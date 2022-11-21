@@ -31,6 +31,12 @@ let disarmPass = document.getElementById('disarmPass')
 let check = document.getElementById('check')
 let send = document.getElementById('send')
 let body = document.getElementById('body')
+let form = document.getElementById('deadMan')
+
+//testing stuff
+let checker = document.getElementById('checker');
+let testing = document.getElementById('testing');
+let fill = document.getElementById('fill');
 
 
 let userPass = '';
@@ -44,11 +50,22 @@ let triggerDate;
 let tries = 0;
 
 function checkPass() {
-    tries++
-    if(tries >= 3){
-        sendEmail()
+    if(disarmPass.value == userPass){
+        console.log('correct password, everything stopped');
+        tries = 0;
+        clearInterval(checkingStuff)
+    } else {
+        tries++
+        console.log(`wrong password, you have ${3 - tries} tries left`);
     }
-    clearInterval(checkingStuff)
+    if(tries >= 3){
+        document.getElementById('deadMan').reset();
+        sendEmail()
+        tries = 0;
+        clearInterval(checkingStuff)
+    }
+    form.reset();
+
 }
 
 function runChecks(triggerDate) {
@@ -105,35 +122,34 @@ function saveInfo() {
     userMonth = Number(userDate[1] - 1)
     userDay = Number(userDate[2])
 
-//    console.log(userMonth);
-    
-
     triggerDate =
     new Date(userYear, userMonth, userDay, userHours, userMinutes);
+    console.log(triggerDate);
 
-    // console.log(triggerDate);
+    //teseting stuff
+    form.style.display = 'none';
+    checker.style.display = 'inline';
+    testing.style.display = 'inline';
+    fill.style.display = 'none';
 
-    // runChecks(triggerDate)
 
-    // console.log(userDate);
-    // console.log(userTime);
-    
-    // running every 5000
+
+
+    // running every 5000 ms
     checkingStuff = setInterval(runChecks, 5000, triggerDate);
 
-    //resets the form fields
-    // document.getElementById('deadMan').reset();
+    // resets the form fields
+    form.reset();
     
 }
 
 //payload function
-function sendEmail() {
-    
-
-    
-
+function sendEmail() {  
     console.log('sending');
     
+    //send email function using smtp elastic email
+    //using secure token instead of user:pass
+    //secure server token from smtp server
     Email.send({
         // Host: "smtp.elasticemail.com",
         // Username: "kailam633@gmail.com",
@@ -144,13 +160,34 @@ function sendEmail() {
         Subject: `${userSubject}`,
         Body: `${userBody}`,
     })
+        //alerting the response meessage
         .then(
             message => alert(message)
         );
-      
 }
 
+//stop function for testing
+function stopNow() {
+    form.style.display = 'inline';
+    checker.style.display = 'none';
+    testing.style.display = 'none';
+    fill.style.display = 'inline';
 
+    clearInterval(checkingStuff)
+    console.log('everything stopped');
+    
+}
+
+//function to randomly generate the form fields for testing purposes
+function fillForm() {
+    toEmail.value = 'test@example.com'
+    subject.value = 'this is a test'
+    body.value = 'hello cozy'
+    password.value = 'asap'
+
+    time.value = '04:20'
+    date.value = '2030-12-25'
+}
 
 // let timeDate = new Date();
 // let timeString = timeDate.toLocaleString('en-US', {
@@ -175,11 +212,6 @@ function sendEmail() {
 // console.log('day: ', timeDay);
 // console.log('hour: ', timeHour);
 // console.log('minutes: ', timeMinutes);
-
-
-
-
-
 
 
 //node stuff for twitter

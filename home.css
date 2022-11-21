@@ -7,12 +7,13 @@ body {
     flex-direction: column;
     align-items: center;
 }
-
-/* hiding the password check until the user submits email info */
-.checker {
-    display: none;
+h1 {
+    /* text-align: center; */
 }
-
-#testing {
-    display: none;
+h3 {
+    /* text-align: center; */
+}
+ol {
+    /* margin-left: auto;
+    margin-right: auto; */
 }

@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <title>Dead Mans Switch</title>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <!-- <script type="text/javascript">
         function sendEmail() {
@@ -24,12 +27,14 @@
       </script> -->
 </head>
 <body>
-    <img src="https://www.gannett-cdn.com/-mm-/f15dd455f510fdb27a4a3ad338ad49344e1fbe42/c=0-4-2996-1697/local/-/media/2016/07/12/USATODAY/USATODAY/636039163940708340-XXX-MR-ROBOT-HOODIE-210-74205396.JPG?width=2996&height=1693&fit=crop&format=pjpg&auto=webp" width="750" alt="">
-    <h1>DMS</h1>
+    <img src="https://www.gannett-cdn.com/-mm-/f15dd455f510fdb27a4a3ad338ad49344e1fbe42/c=0-4-2996-1697/local/-/media/2016/07/12/USATODAY/USATODAY/636039163940708340-XXX-MR-ROBOT-HOODIE-210-74205396.JPG?width=2996&height=1693&fit=crop&format=pjpg&auto=webp" width="375" alt="">
+    <h1>Dead Mans Switch</h1>
+    <a href="home.html"><p>HOME</p></a>
     <!-- <form method="post">
         <input type="button" value="Send Email"
             onclick="sendEmail()" />
     </form> -->
+
     <form method="post" id="deadMan">
 
         <label>To</label><br>
@@ -40,7 +45,7 @@
         <input type="email" id="userEmail"><br> -->
 
         <label>Subject</label><br>
-        <input type="text"  id="subject"><br>
+        <input type="text" id="subject"><br>
 
         <label for="text">Body</label><br>
         <textarea id="body" ></textarea><br>
@@ -56,11 +61,23 @@
         <input type="button" id="send" value="Send Email" onclick="saveInfo()"><br>
          
 
-        <label for="password">Check Password</label><br>
-        <input type="text" id="disarmPass">
-        <input type="button" id="check" value="Check Password" onclick="checkPass()">
+        <!-- <label for="password">Check Password</label><br> -->
+        <!-- <input type="text" id="disarmPass">
+        <input type="button" id="check" value="Check Password" onclick="checkPass()"> -->
+        
     </form>
 
-    <script src="index.js"></script>
+    <!-- testing placement of stuff -->
+    <div class="checker" id="checker">
+      <label for="password">Check Password</label>
+      <input type="text" id="disarmPass">
+      <input type="button" value="Check Password" onclick="checkPass()">
+    </div>
+    
+    <input type="button" id="testing" value="Emergency Stop For Testing" onclick="stopNow()">
+    <input type="button" id='fill' value="Fill Form" onclick="fillForm()">
+
+
+    <script src="deadManSwitch.js"></script>
 </body>
 </html>
